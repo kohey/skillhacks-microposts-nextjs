@@ -4,6 +4,8 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #f0f0f0; /* グレー色 */
+    border-radius: 10px; /* 角に丸みをつける */  
 }
 .title {
     margin: 0;
