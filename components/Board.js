@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Column from './Column';
 import TaskModal from './TaskModal';
 import TaskDetailModal from './TaskDetailModal';
 import styles from '../styles/Board.module.css';
+import { fetchTasks  } from '../api/tasks';
+
 const Board = () => {
   const [tasks, setTasks] = useState({
     pending: [],
     inProgress: [],
-    done: [],
+    completed: [],
   });
+  useEffect(() => {
+    const getTasks = async () => {
+      const fetchedTasks = await fetchTasks();
+      setTasks({
+        pending: fetchedTasks.pending,
+        inProgress: fetchedTasks.in_progress,
+        completed: fetchedTasks.completed,
+      });
+    };
+    getTasks();
+  }, []);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); 
@@ -38,7 +52,7 @@ const Board = () => {
       <div className={styles.columns}>
         <Column name="保留中" tasks={tasks.pending} onCardClick={handleCardClick} />
         <Column name="進行中" tasks={tasks.inProgress} onCardClick={handleCardClick} />
-        <Column name="完了" tasks={tasks.done} onCardClick={handleCardClick} />
+        <Column name="完了" tasks={tasks.completed} onCardClick={handleCardClick} />
       </div>
       <TaskModal
         isOpen={isModalOpen}

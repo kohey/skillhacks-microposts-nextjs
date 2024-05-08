@@ -5,7 +5,7 @@ const Card = ({ task, onClick }) => {
   return (
     <div className={styles.card} onClick={onClick}>
       <h3 className={styles.content}>{task.content}</h3>
-      <p className={styles.due_date}>期限: {task.dueDate}</p>
+      <p className={styles.due_date}>期限: {task.due_date}</p>
     </div>
   );
 };
