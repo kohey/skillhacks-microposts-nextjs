@@ -1,0 +1,26 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .createTaskButton {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px; /* ボタンに丸みをつける */
+    background-color: #4CAF50; /* Green */
+    color: white;
+    cursor: pointer;
+  }
+  .columns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
