@@ -68,6 +68,7 @@ const Board = () => {
         task={selectedTask}
         onClose={() => setIsDetailModalOpen(false)}
         onUpdate={handleUpdateTask}
+        onFetch={getTasks}
       />
     </div>
   );

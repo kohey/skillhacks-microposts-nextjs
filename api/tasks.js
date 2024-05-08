@@ -31,3 +31,12 @@ export const createTask = async (task) => {
     const data = await response.json();
     return data;
   };
+
+  export const deleteTask = async (id) => {
+    await fetch(`https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev/api/v1/tasks/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  };

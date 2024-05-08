@@ -36,7 +36,7 @@
     border-radius: 12px;
   }
   
-  .cancelButton {
+  .deleteButton {
     background-color: #f44336; /* Red */
     border: none;
     color: white;

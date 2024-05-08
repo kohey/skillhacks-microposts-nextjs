@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from '../styles/TaskDetailModal.module.css';
-const TaskDetailModal = ({ task, isOpen, onClose, onUpdate }) => {
+import { deleteTask } from '../api/tasks';
+
+const TaskDetailModal = ({ task, isOpen, onClose, onUpdate, onFetch }) => {
   if (!isOpen) return null;
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedTask = {
@@ -12,9 +15,18 @@ const TaskDetailModal = ({ task, isOpen, onClose, onUpdate }) => {
     };
     onUpdate(updatedTask);
   };
+
+  const handleDelete = async() => {
+    if (window.confirm('本当に削除しますか？')) {
+      await deleteTask(task.id);
+      onClose();
+      onFetch();
+    }
+  };
+
   return (
-    <div className={styles.modal}>
-      <div className={styles.modalContent}>
+    <div className={styles.modal} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <h2>タスク詳細</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
@@ -41,11 +53,12 @@ const TaskDetailModal = ({ task, isOpen, onClose, onUpdate }) => {
           </div>
           <div className={styles.buttonGroup}>
             <button type="submit" className={styles.updateButton}>更新</button>
-            <button type="button" onClick={onClose} className={styles.cancelButton}>キャンセル</button>
+            <button type="button" onClick={handleDelete} className={styles.deleteButton}>削除</button>
           </div>
         </form>
       </div>
     </div>
   );
 };
+
 export default TaskDetailModal;
