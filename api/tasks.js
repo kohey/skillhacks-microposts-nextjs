@@ -1,9 +1,12 @@
+// NOTE: バックエンドのurlを指定すること
+const base = 'https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev'
+
 export const fetchTasks = async () => {
-    return await fetch('https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev/api/v1/tasks').then(response => response.json())
+    return await fetch(`${base}/api/v1/tasks`).then(response => response.json())
 };
 
 export const createTask = async (task) => {
-    const response = await fetch('https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev/api/v1/tasks', {
+    const response = await fetch(`${base}/api/v1/tasks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -18,7 +21,7 @@ export const createTask = async (task) => {
   };
 
   export const updateTask = async (id, updatedTask) => {
-    const response = await fetch(`https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev/api/v1/tasks/${id}`, {
+    const response = await fetch(`${base}/api/v1/tasks/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +36,7 @@ export const createTask = async (task) => {
   };
 
   export const deleteTask = async (id) => {
-    await fetch(`https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev/api/v1/tasks/${id}`, {
+    await fetch(`${base}/api/v1/tasks/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
