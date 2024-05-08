@@ -27,9 +27,9 @@ const TaskDetailModal = ({ task, isOpen, onClose, onUpdate }) => {
             <label>
               ステータス:
               <select name="status" defaultValue={task.status}>
-                <option value="pending">pending</option>
-                <option value="inProgress">inProgress</option>
-                <option value="completed">completed</option>
+                <option value="pending">保留中</option>
+                <option value="in_progress">進行中</option>
+                <option value="completed">完了</option>
               </select>
             </label>
           </div>

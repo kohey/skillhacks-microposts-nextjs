@@ -3,7 +3,7 @@ import Column from './Column';
 import TaskModal from './TaskModal';
 import TaskDetailModal from './TaskDetailModal';
 import styles from '../styles/Board.module.css';
-import { fetchTasks  } from '../api/tasks';
+import { fetchTasks, createTask, updateTask  } from '../api/tasks';
 
 const Board = () => {
   const [tasks, setTasks] = useState({
@@ -11,37 +11,41 @@ const Board = () => {
     inProgress: [],
     completed: [],
   });
+  const getTasks = async () => {
+    const fetchedTasks = await fetchTasks();
+    setTasks({
+      pending: fetchedTasks.pending,
+      inProgress: fetchedTasks.in_progress,
+      completed: fetchedTasks.completed,
+    });
+  };
+
   useEffect(() => {
-    const getTasks = async () => {
-      const fetchedTasks = await fetchTasks();
-      setTasks({
-        pending: fetchedTasks.pending,
-        inProgress: fetchedTasks.in_progress,
-        completed: fetchedTasks.completed,
-      });
-    };
     getTasks();
   }, []);
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); 
 
-  const handleAddTask = (newTask) => {
-    setTasks((prevTasks) => ({
-      ...prevTasks,
-      pending: [...prevTasks.pending, newTask],
-    }));
+  const handleAddTask = async(newTask) => {
+    await createTask(newTask);
+    getTasks();
   };
+
   const handleCardClick = (task) => {
     setSelectedTask(task);
     setIsDetailModalOpen(true);
   };
-  const handleUpdateTask = (updatedTask) => {
-    // updatedTaskを使ってタスクを更新する処理を書く
-    // ここでは簡単のためにconsole.logを使っていますが、実際には状態を更新するコードを書くべきです
-    console.log(updatedTask);
-    setIsDetailModalOpen(false);
+  const handleUpdateTask = async(updatedTask) => {
+    const allTasks = [...tasks.pending, ...tasks.inProgress, ...tasks.completed];
+    const task = allTasks.find(task => task.id === updatedTask.id);
+    if (task) {
+      await updateTask(task.id, updatedTask);
+      getTasks();
+      setIsDetailModalOpen(false);
+    }
   };
 
   return (

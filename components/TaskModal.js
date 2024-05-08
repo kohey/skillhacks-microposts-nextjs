@@ -7,11 +7,11 @@ const TaskModal = ({ isOpen, onClose, onCreate }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onCreate({ content, dueDate });
+    onCreate({ content, due_date: dueDate });
     setContent('');
     setDueDate('');
     onClose();
-  };
+  };  
 
   if (!isOpen) {
     return null;
