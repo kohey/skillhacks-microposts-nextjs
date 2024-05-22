@@ -36,7 +36,7 @@ export const createTask = async (task) => {
   };
 
   export const deleteTask = async (id) => {
-    await fetch(`${base}/api/v1/tasks/${id}`, {
+    await fetch(`${base}/api/v1/articles/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
