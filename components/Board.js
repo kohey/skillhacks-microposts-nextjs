@@ -3,20 +3,21 @@ import Column from './Column';
 import TaskModal from './TaskModal';
 import TaskDetailModal from './TaskDetailModal';
 import styles from '../styles/Board.module.css';
-import { fetchTasks, createTask, updateTask  } from '../api/tasks';
+import { fetchArticles, createTask, updateTask  } from '../api/tasks';
+import { fetchCategories } from  '../api/categories';
 
 const Board = () => {
   const [tasks, setTasks] = useState({
-    pending: [],
-    inProgress: [],
-    completed: [],
+    articles: [],
+    categories: [],
   });
   const getTasks = async () => {
-    const fetchedTasks = await fetchTasks();
+    const fetchedArticles = await fetchArticles();
+    const fetchedCategories = await fetchCategories();
+
     setTasks({
-      pending: fetchedTasks.pending,
-      inProgress: fetchedTasks.in_progress,
-      completed: fetchedTasks.completed,
+      articles: fetchedArticles,
+      categories: fetchedCategories,
     });
   };
 
@@ -51,14 +52,13 @@ const Board = () => {
   return (
     <div className={styles.board}>
       <div className={styles.createTaskButton}>
-        <button onClick={() => setIsModalOpen(true)} className={styles.button}>新しいタスクを作成</button>
+        <button onClick={() => setIsModalOpen(true)} className={styles.button}>新しい記事を作成</button>
       </div>
       <div className={styles.columns}>
-        <Column name="保留中" tasks={tasks.pending} onCardClick={handleCardClick} />
-        <Column name="進行中" tasks={tasks.inProgress} onCardClick={handleCardClick} />
-        <Column name="完了" tasks={tasks.completed} onCardClick={handleCardClick} />
+        <Column name="記事一覧" tasks={tasks.articles} categories={tasks.categories} onCardClick={handleCardClick} />
       </div>
       <TaskModal
+        categories={tasks.categories}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onCreate={handleAddTask}
@@ -66,6 +66,7 @@ const Board = () => {
       <TaskDetailModal
         isOpen={isDetailModalOpen}
         task={selectedTask}
+        categories={tasks.categories}
         onClose={() => setIsDetailModalOpen(false)}
         onUpdate={handleUpdateTask}
         onFetch={getTasks}

@@ -2,16 +2,17 @@ import React from 'react';
 import styles from '../styles/TaskDetailModal.module.css';
 import { deleteTask } from '../api/tasks';
 
-const TaskDetailModal = ({ task, isOpen, onClose, onUpdate, onFetch }) => {
+const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch }) => {
   if (!isOpen) return null;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedTask = {
       ...task,
-      content: event.target.elements.content.value,
-      status: event.target.elements.status.value,
-      dueDate: event.target.elements.dueDate.value,
+      title: event.target.elements.title.value,
+      body: event.target.elements.body.value,
+      categoryId: event.target.elements.category.id.value,
+      status: event.target.elements.status.value
     };
     onUpdate(updatedTask);
   };
@@ -30,27 +31,38 @@ const TaskDetailModal = ({ task, isOpen, onClose, onUpdate, onFetch }) => {
         <h2>タスク詳細</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label>
-              内容:
-              <input name="content" defaultValue={task.content} />
+            <label style={{ display: 'flex', flexDirection: 'column' }}>
+              タイトル
+              <input name="title" defaultValue={task.title} />
             </label>
-          </div>
-          <div className={styles.formGroup}>
+            <label style={{ display: 'flex', flexDirection: 'column' }}>
+              本文
+              <textarea
+                defaultValue={task.body}
+                name="body"
+              />
+            </label>
+            <label style={{ display: 'flex', flexDirection: 'column' }}>
+              カテゴリー:
+              <select name="category" defaultValue={task.categoryId}>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </label>
             <label>
-              ステータス:
-              <select name="status" defaultValue={task.status}>
-                <option value="pending">保留中</option>
-                <option value="in_progress">進行中</option>
-                <option value="completed">完了</option>
+              ステータス: 
+              <select
+                defaultValue={task.status}
+              >
+                <option value="draft">下書き</option>
+                <option value="published">公開</option>
               </select>
             </label>
           </div>
-          <div className={styles.formGroup}>
-            <label>
-              期限:
-              <input type="date" name="dueDate" defaultValue={task.dueDate} />
-            </label>
-          </div>
+          
           <div className={styles.buttonGroup}>
             <button type="submit" className={styles.updateButton}>更新</button>
             <button type="button" onClick={handleDelete} className={styles.deleteButton}>削除</button>

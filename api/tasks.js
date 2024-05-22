@@ -1,17 +1,17 @@
 // NOTE: バックエンドのurlを指定すること
-const base = 'https://effective-enigma-69v6x7j6rqgv246q4-4567.app.github.dev'
+const base = 'https://sturdy-space-couscous-x59w7grwrg5rhvp45-3000.app.github.dev'
 
-export const fetchTasks = async () => {
-    return await fetch(`${base}/api/v1/tasks`).then(response => response.json())
+export const fetchArticles = async () => {
+    return await fetch(`${base}/api/v1/articles`).then(response => response.json())
 };
 
 export const createTask = async (task) => {
-    const response = await fetch(`${base}/api/v1/tasks`, {
+    const response = await fetch(`${base}/api/v1/articles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify({ article: task }),
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

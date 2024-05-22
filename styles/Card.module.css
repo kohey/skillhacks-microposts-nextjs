@@ -11,6 +11,12 @@
   .card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* マウスオーバー時の影 */
   }
+  .title {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
   .content {
     margin: 0;
     margin-bottom: 5px;

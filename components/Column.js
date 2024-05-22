@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import styles from '../styles/Column.module.css';
 
-const Column = ({ name, tasks, onCardClick }) => {
+const Column = ({ name, tasks, categories, onCardClick }) => {
   return (
     <div className={styles.column}>
       <h2 className={styles.title}>{name}</h2>

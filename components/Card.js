@@ -4,8 +4,8 @@ import styles from '../styles/Card.module.css';
 const Card = ({ task, onClick }) => {
   return (
     <div className={styles.card} onClick={onClick}>
-      <h3 className={styles.content}>{task.content}</h3>
-      <p className={styles.due_date}>期限: {task.due_date}</p>
+      <h3 className={styles.title}>{task.title}</h3>
+      <p className={styles.content}>{task.category.name}</p>
     </div>
   );
 };
