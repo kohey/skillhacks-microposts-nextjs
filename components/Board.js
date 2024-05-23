@@ -31,6 +31,8 @@ const Board = () => {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); 
 
   const handleAddTask = async(newTask) => {
+    console.log("@@@@newTask@@@@@@")
+    console.log(newTask)
     await createTask(newTask);
     getTasks();
   };

@@ -4,7 +4,7 @@ import styles from '../styles/TaskModal.module.css';
 const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [category, setCategory] = useState(categories[0]?.id || '')
+  const [category, setCategory] = useState('1')
   const [status, setStatus] = useState('draft');
 
   const handleSubmit = (event) => {
@@ -12,7 +12,7 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
     onCreate({ title, body, category_id: category, status });
     setTitle('');
     setBody('');
-    setCategory('')
+    setCategory('1')
     setStatus('');
     onClose();
   };  
@@ -46,7 +46,7 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
             </label>
             <label style={{ display: 'flex', flexDirection: 'column' }}>
               カテゴリー:
-              <select name="category" onChange={(e) => setCategory(e.target.value)}>
+              <select name="category_id" onChange={(e) => setCategory(e.target.value)}>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
