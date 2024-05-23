@@ -11,7 +11,7 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
       ...task,
       title: event.target.elements.title.value,
       body: event.target.elements.body.value,
-      categoryId: event.target.elements.category.id.value,
+      category_id: event.target.elements.category_id.value,
       status: event.target.elements.status.value
     };
     onUpdate(updatedTask);
@@ -44,7 +44,7 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
             </label>
             <label style={{ display: 'flex', flexDirection: 'column' }}>
               カテゴリー:
-              <select name="category" defaultValue={task.categoryId}>
+              <select name="category_id" defaultValue={task.categoryId}>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
@@ -55,6 +55,7 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
             <label>
               ステータス: 
               <select
+                name="status"
                 defaultValue={task.status}
               >
                 <option value="draft">下書き</option>

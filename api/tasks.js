@@ -21,7 +21,7 @@ export const createTask = async (task) => {
   };
 
   export const updateTask = async (id, updatedTask) => {
-    const response = await fetch(`${base}/api/v1/tasks/${id}`, {
+    const response = await fetch(`${base}/api/v1/articles/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

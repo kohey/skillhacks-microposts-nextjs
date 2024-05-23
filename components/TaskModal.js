@@ -5,7 +5,7 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [category, setCategory] = useState(categories[0]?.id || '')
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('draft');
 
   const handleSubmit = (event) => {
     event.preventDefault();

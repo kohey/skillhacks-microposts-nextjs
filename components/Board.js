@@ -39,11 +39,11 @@ const Board = () => {
     setSelectedTask(task);
     setIsDetailModalOpen(true);
   };
-  const handleUpdateTask = async(updatedTask) => {
-    const allTasks = [...tasks.pending, ...tasks.inProgress, ...tasks.completed];
-    const task = allTasks.find(task => task.id === updatedTask.id);
-    if (task) {
-      await updateTask(task.id, updatedTask);
+  const handleUpdateTask = async(updatedArticle) => {
+    const allArticles = tasks.articles;
+    const article = allArticles.find(article => article.id === updatedArticle.id);
+    if (article) {
+      await updateTask(article.id, updatedArticle);
       getTasks();
       setIsDetailModalOpen(false);
     }
