@@ -1,29 +1,44 @@
 .card {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    background-color: #ffffff; /* ホワイト色 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* 影をつける */
-    transition: box-shadow 0.3s ease; /* アニメーション効果 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 250px; /* 固定の高さを指定 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+  
   .card:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* マウスオーバー時の影 */
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
+  
   .title {
-    margin: 0;
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
   }
-  .content {
-    margin: 0;
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: bold;
+  
+  .category {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    display: inline-block;
+    width: fit-content;
   }
-  .due_date {
-    margin: 0;
-    font-size: 14px;
+  
+  .body {
+    font-size: 1rem;
+    color: #333;
+    overflow: hidden; /* はみ出た部分を隠す */
+    text-overflow: ellipsis; /* 省略記号を追加 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 表示する行数を3行に制限 */
+    -webkit-box-orient: vertical;
   }
