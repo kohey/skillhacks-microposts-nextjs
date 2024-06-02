@@ -1,56 +1,73 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-  }
-  
-  .inputGroup label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .createButton {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-  }
-  
-  .cancelButton {
-    background-color: #f44336; /* Red */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px; /* カードより大きく */
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.input, .select, .textarea {
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.textarea {
+  height: 100px; /* 快適に入力できるような大きさ */
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.createButton, .cancelButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.createButton {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.cancelButton {
+  background-color: #f44336; /* Red */
+  color: white;
+}

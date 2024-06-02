@@ -1,51 +1,73 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .modalContent {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 500px;
-  }
-  .formGroup {
-    margin-bottom: 10px;
-  }
-  .buttonGroup {
-    display: flex;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .updateButton {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-  }
-  
-  .deleteButton {
-    background-color: #f44336; /* Red */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
-  }
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px; /* カードより大きく */
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.input, .select, .textarea {
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.textarea {
+  height: 100px; /* 快適に入力できるような大きさ */
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.updateButton, .deleteButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.updateButton {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.deleteButton {
+  background-color: #f44336; /* Red */
+  color: white;
+}

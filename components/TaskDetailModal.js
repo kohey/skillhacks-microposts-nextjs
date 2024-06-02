@@ -28,23 +28,24 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
   return (
     <div className={styles.modal} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <h2>タスク詳細</h2>
+        <h2 className={styles.title}>記事編集</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label style={{ display: 'flex', flexDirection: 'column' }}>
+            <label className={styles.label}>
               タイトル
-              <input name="title" defaultValue={task.title} />
+              <input name="title" defaultValue={task.title} className={styles.input} />
             </label>
-            <label style={{ display: 'flex', flexDirection: 'column' }}>
+            <label className={styles.label}>
               本文
               <textarea
                 defaultValue={task.body}
                 name="body"
+                className={styles.textarea}
               />
             </label>
-            <label style={{ display: 'flex', flexDirection: 'column' }}>
-              カテゴリー:
-              <select name="category_id" defaultValue={task.categoryId}>
+            <label className={styles.label}>
+              カテゴリー
+              <select name="category_id" defaultValue={task.categoryId} className={styles.select}>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
@@ -52,11 +53,12 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
                 ))}
               </select>
             </label>
-            <label>
-              ステータス: 
+            <label className={styles.label}>
+              ステータス
               <select
                 name="status"
                 defaultValue={task.status}
+                className={styles.select}
               >
                 <option value="draft">下書き</option>
                 <option value="published">公開</option>

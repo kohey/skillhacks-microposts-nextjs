@@ -24,19 +24,14 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h2>記事を新規作成</h2>
+        <h2 className={styles.title}>記事を新規作成</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>
               タイトル
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
+              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
             </label>
-            <label style={{ display: 'flex', flexDirection: 'column' }}>
+            <label className={styles.label}>
               本文
               <textarea
                 value={body}
@@ -44,8 +39,8 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
                 required
               />
             </label>
-            <label style={{ display: 'flex', flexDirection: 'column' }}>
-              カテゴリー:
+            <label className={styles.label}>
+              カテゴリー
               <select name="category_id" onChange={(e) => setCategory(e.target.value)}>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
@@ -54,8 +49,8 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
                 ))}
               </select>
             </label>
-            <label>
-              ステータス:
+            <label className={styles.label}>
+              ステータス 
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
@@ -65,7 +60,6 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
                 <option value="published">公開</option>
               </select>
             </label>
-
           </div>
           <div className={styles.buttonGroup}>
             <button type="submit" className={styles.createButton}>作成</button>
