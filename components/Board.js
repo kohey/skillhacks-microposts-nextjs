@@ -1,52 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import Column from './Column';
-import TaskModal from './TaskModal';
-import TaskDetailModal from './TaskDetailModal';
-import { fetchArticles, createTask, updateTask } from '../api/tasks';
+import ArticleModal from './ArticleModal';
+import ArticleDetailModal from './ArticleDetailModal';
+import { fetchArticles, createarticle, updatearticle } from '../api/articles';
 import { fetchCategories } from '../api/categories';
 import { Container, Grid, Button, Box, AppBar, Toolbar, Typography } from '@mui/material';
 import styles from '../styles/Board.module.css';
 
 const Board = () => {
-  const [tasks, setTasks] = useState({
+  const [articles, setarticles] = useState({
     articles: [],
     categories: [],
   });
 
-  const getTasks = async () => {
+  const getarticles = async () => {
     const fetchedArticles = await fetchArticles();
     const fetchedCategories = await fetchCategories();
 
-    setTasks({
+    setarticles({
       articles: fetchedArticles,
       categories: fetchedCategories,
     });
   };
 
   useEffect(() => {
-    getTasks();
+    getarticles();
   }, []);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedarticle, setSelectedarticle] = useState(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
-  const handleAddTask = async (newTask) => {
-    await createTask(newTask);
-    getTasks();
+  const handleAddarticle = async (newarticle) => {
+    await createarticle(newarticle);
+    getarticles();
   };
 
-  const handleCardClick = (task) => {
-    setSelectedTask(task);
+  const handleCardClick = (article) => {
+    setSelectedarticle(article);
     setIsDetailModalOpen(true);
   };
 
-  const handleUpdateTask = async (updatedArticle) => {
-    const allArticles = tasks.articles;
+  const handleUpdatearticle = async (updatedArticle) => {
+    const allArticles = articles.articles;
     const article = allArticles.find(article => article.id === updatedArticle.id);
     if (article) {
-      await updateTask(article.id, updatedArticle);
-      getTasks();
+      await updatearticle(article.id, updatedArticle);
+      getarticles();
       setIsDetailModalOpen(false);
     }
   };
@@ -69,25 +69,25 @@ const Board = () => {
       </AppBar>
       <Container maxWidth="lg" className={styles.container}>
         <Grid container spacing={3}>
-          {tasks.articles.map((article, index) => (
+          {articles.articles.map((article, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Column task={article} onCardClick={handleCardClick} />
+              <Column article={article} onCardClick={handleCardClick} />
             </Grid>
           ))}
         </Grid>
-        <TaskModal
-          categories={tasks.categories}
+        <ArticleModal
+          categories={articles.categories}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          onCreate={handleAddTask}
+          onCreate={handleAddarticle}
         />
-        <TaskDetailModal
+        <ArticleDetailModal
           isOpen={isDetailModalOpen}
-          task={selectedTask}
-          categories={tasks.categories}
+          article={selectedarticle}
+          categories={articles.categories}
           onClose={() => setIsDetailModalOpen(false)}
-          onUpdate={handleUpdateTask}
-          onFetch={getTasks}
+          onUpdate={handleUpdatearticle}
+          onFetch={getarticles}
         />
       </Container>
     </div>

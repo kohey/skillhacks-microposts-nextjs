@@ -2,10 +2,10 @@ import React from 'react';
 import Card from './Card';
 import styles from '../styles/Column.module.css';
 
-const Column = ({ task, onCardClick }) => {
+const Column = ({ article, onCardClick }) => {
   return (
     <div className={styles.column}>
-      <Card task={task} onClick={() => onCardClick(task)} />
+      <Card article={article} onClick={() => onCardClick(article)} />
     </div>
   );
 };

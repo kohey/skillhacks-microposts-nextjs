@@ -8,12 +8,12 @@ const truncateText = (text, maxLength) => {
   return text;
 };
 
-const Card = ({ task, onClick }) => {
+const Card = ({ article, onClick }) => {
   return (
     <div className={styles.card} onClick={onClick}>
-      <h3 className={styles.title}>{task.title}</h3>
-      <p className={styles.category}>{task.category.name}</p>
-      <p className={styles.body}>{truncateText(task.body, 100)}</p>
+      <h3 className={styles.title}>{article.title}</h3>
+      <p className={styles.category}>{article.category.name}</p>
+      <p className={styles.body}>{truncateText(article.body, 100)}</p>
     </div>
   );
 };

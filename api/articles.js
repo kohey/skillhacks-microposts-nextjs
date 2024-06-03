@@ -5,13 +5,13 @@ export const fetchArticles = async () => {
     return await fetch(`${base}/api/v1/articles`).then(response => response.json())
 };
 
-export const createTask = async (task) => {
+export const createarticle = async (article) => {
     const response = await fetch(`${base}/api/v1/articles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ article: task }),
+      body: JSON.stringify({ article: article }),
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -20,13 +20,13 @@ export const createTask = async (task) => {
     return data;
   };
 
-  export const updateTask = async (id, updatedTask) => {
+  export const updatearticle = async (id, updatedarticle) => {
     const response = await fetch(`${base}/api/v1/articles/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedTask),
+      body: JSON.stringify(updatedarticle),
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -35,7 +35,7 @@ export const createTask = async (task) => {
     return data;
   };
 
-  export const deleteTask = async (id) => {
+  export const deletearticle = async (id) => {
     await fetch(`${base}/api/v1/articles/${id}`, {
       method: 'DELETE',
       headers: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from '../styles/TaskModal.module.css';
+import styles from '../styles/ArticleModal.module.css';
 
-const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
+const articleModal = ({ categories, isOpen, onClose, onCreate }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [category, setCategory] = useState('1')
@@ -71,4 +71,4 @@ const TaskModal = ({ categories, isOpen, onClose, onCreate }) => {
   );
 };
 
-export default TaskModal;
+export default articleModal;

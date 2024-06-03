@@ -1,25 +1,25 @@
 import React from 'react';
-import styles from '../styles/TaskDetailModal.module.css';
-import { deleteTask } from '../api/tasks';
+import styles from '../styles/ArticleDetailModal.module.css';
+import { deletearticle } from '../api/articles';
 
-const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch }) => {
+const articleDetailModal = ({ article, categories, isOpen, onClose, onUpdate, onFetch }) => {
   if (!isOpen) return null;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const updatedTask = {
-      ...task,
+    const updatedarticle = {
+      ...article,
       title: event.target.elements.title.value,
       body: event.target.elements.body.value,
       category_id: event.target.elements.category_id.value,
       status: event.target.elements.status.value
     };
-    onUpdate(updatedTask);
+    onUpdate(updatedarticle);
   };
 
   const handleDelete = async() => {
     if (window.confirm('本当に削除しますか？')) {
-      await deleteTask(task.id);
+      await deletearticle(article.id);
       onClose();
       onFetch();
     }
@@ -33,19 +33,19 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
           <div className={styles.formGroup}>
             <label className={styles.label}>
               タイトル
-              <input name="title" defaultValue={task.title} className={styles.input} />
+              <input name="title" defaultValue={article.title} className={styles.input} />
             </label>
             <label className={styles.label}>
               本文
               <textarea
-                defaultValue={task.body}
+                defaultValue={article.body}
                 name="body"
                 className={styles.textarea}
               />
             </label>
             <label className={styles.label}>
               カテゴリー
-              <select name="category_id" defaultValue={task.categoryId} className={styles.select}>
+              <select name="category_id" defaultValue={article.categoryId} className={styles.select}>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
@@ -57,7 +57,7 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
               ステータス
               <select
                 name="status"
-                defaultValue={task.status}
+                defaultValue={article.status}
                 className={styles.select}
               >
                 <option value="draft">下書き</option>
@@ -76,4 +76,4 @@ const TaskDetailModal = ({ task, categories, isOpen, onClose, onUpdate, onFetch 
   );
 };
 
-export default TaskDetailModal;
+export default articleDetailModal;
